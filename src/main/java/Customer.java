@@ -38,11 +38,9 @@ public class Customer {
     private void calculate(double sum, int i) {
         switch (customerType) {
             case COMPANY:
-                // we are in overdraft
                 extractedCompany(sum, i);
                 break;
             case PERSON:
-                // we are in overdraft
                 extractPerson(sum);
                 break;
         }
