@@ -1,11 +1,11 @@
-public class Customer {
+abstract public class Customer {
 
-    private String name;
-    private String surname;
-    private String email;
-    private CustomerType customerType;
-    private Account account;
-    private double companyOverdraftDiscount = 1;
+    protected String name;
+    protected String surname;
+    protected String email;
+    protected CustomerType customerType;
+    protected Account account;
+    protected double companyOverdraftDiscount = 1;
 
     public Customer(String name, String surname, String email, CustomerType customerType, Account account) {
         this.name = name;
@@ -35,33 +35,7 @@ public class Customer {
         }
     }
 
-    private void calculate(double sum, int i) {
-        switch (customerType) {
-            case COMPANY:
-                extractedCompany(sum, i);
-                break;
-            case PERSON:
-                extractPerson(sum);
-                break;
-        }
-    }
-
-    private void extractPerson(double sum) {
-        if (account.getMoney() < 0) {
-            account.setMoney((account.getMoney() - sum) - sum * account.overdraftFee());
-        } else {
-            account.setMoney(account.getMoney() - sum);
-        }
-    }
-
-    private void extractedCompany(double sum, int kof) {
-        if (account.getMoney() < 0) {
-            // 50 percent discount for overdraft for premium account
-            account.setMoney((account.getMoney() - sum) - sum * account.overdraftFee() * companyOverdraftDiscount / kof);
-        } else {
-            account.setMoney(account.getMoney() - sum);
-        }
-    }
+    abstract void calculate(double sum, int i) ;
 
     public String getName() {
         return name;
@@ -107,6 +81,7 @@ public class Customer {
 
     public String printCustomerAccount() {
         return "Account: IBAN: " + account.getIban() + ", Money: "
-                + account.getMoney() + ", Account type: " + account.getType();
+                + account.getMoney() + ", Account type: " + account.getType()
+                ;
     }
 }
