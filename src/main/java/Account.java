@@ -1,14 +1,11 @@
 public class Account {
 
+    private final AccountMoney accountMoney = new AccountMoney();
     private String iban;
 
     private AccountType type;
 
     private int daysOverdrawn;
-
-    private double money;
-
-    private String currency;
 
     private Customer customer;
 
@@ -58,11 +55,11 @@ public class Account {
     }
 
     public void setMoney(double money) {
-        this.money = money;
+        this.accountMoney.setMoney(money);
     }
 
     public double getMoney() {
-        return money;
+        return accountMoney.getMoney();
     }
 
     public Customer getCustomer() {
@@ -82,11 +79,11 @@ public class Account {
     }
 
     public String getCurrency() {
-        return currency;
+        return accountMoney.getCurrency();
     }
 
     public void setCurrency(String currency) {
-        this.currency = currency;
+        this.accountMoney.setCurrency(currency);
     }
 
     @Override
