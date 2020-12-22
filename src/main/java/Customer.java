@@ -80,8 +80,6 @@ abstract public class Customer {
     }
 
     public String printCustomerAccount() {
-        return "Account: IBAN: " + account.getIban() + ", Money: "
-                + account.getMoney() + ", Account type: " + account.getType()
-                ;
+        return account.toString();
     }
 }
